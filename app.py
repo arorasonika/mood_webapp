@@ -62,7 +62,7 @@ class FirebaseUser(UserMixin):
 # --- Application Initialization ---
 app = Flask(__name__)
 app.config.from_object(Config)
-app.logger.setLevel("INFO")
+app.logger.setLevel("DEBUG")
 # db.init_app(app) # REMOVE SQLAlchemy initialization
 
 @app.context_processor
