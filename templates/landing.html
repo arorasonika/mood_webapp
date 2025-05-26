@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+<div class="landing-hero">
+    <div class="container">
+        <h1 class="display-4">A quiet moment,<br>just for you.</h1>
+        <p class="lead">
+            Mindful Moments helps you pause and reflect. Each day, we'll send a gentle SMS asking about your day.
+            Reply with an emoji to capture your feeling.
+        </p>
+        <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg mt-3">
+            Begin Your Journey
+        </a>
+    </div>
+</div>
+
+<div class="container">
+    <section class="features-section">
+        <h2 class="section-title">Simple to Start, Meaningful to Continue</h2>
+        <div class="row" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;"> {# Simple flex row #}
+            <div class="col-md-4" style="flex: 1; min-width: 280px;"> {# Flex item #}
+                <div class="feature-card">
+                    <div class="feature-icon"> &#x1F4F1; </div> <h3 class="card-title">1. Connect</h3>
+                    <p>Provide your phone number. We'll send a quick verification code to get you started.</p>
+                </div>
+            </div>
+            <div class="col-md-4" style="flex: 1; min-width: 280px;"> {# Flex item #}
+                <div class="feature-card">
+                    <div class="feature-icon">&#x270F;&#xFE0F;</div> <h3 class="card-title">2. Reflect Daily</h3>
+                    <p>Look for our daily SMS prompt. Take a moment, choose an emoji, and reply.</p>
+                </div>
+            </div>
+            <div class="col-md-4" style="flex: 1; min-width: 280px;"> {# Flex item #}
+                <div class="feature-card">
+                     <div class="feature-icon">&#x1F4C5;</div> <h3 class="card-title">3. See Your Story</h3>
+                    <p>Visit your private calendar online anytime to see your mood patterns and reflections.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+         <h2>Your Space, Your Pace</h2>
+         <p class="lead">
+            This is a personal tool for self-reflection. There's no right or wrong way to feel.
+            Just a simple way to check in with yourself.
+         </p>
+         <small class="mt-3 d-block">
+            By getting started, you agree to receive one daily SMS and occasional account messages.
+            Message &amp; data rates may apply. Reply <strong>STOP</strong> to any message to unsubscribe.
+        </small>
+    </section>
+</div>
+{% endblock %}

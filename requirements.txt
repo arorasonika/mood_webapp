@@ -1,0 +1,12 @@
+firebase-admin
+Flask 
+flask-pymongo
+Flask 
+Flask-SQLAlchemy 
+Flask-Login 
+twilio 
+python-dotenv 
+APScheduler 
+phonenumbers 
+psycopg2-binary
+waitress

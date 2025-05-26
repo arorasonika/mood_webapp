@@ -1,0 +1,570 @@
+/* static/css/style.css */
+
+/* --- Base & Reset --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    background-color: #FAF8F5; /* Warm off-white */
+    color: #3B3A39; /* Dark warm gray */
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px; /* Base font size */
+}
+
+.container {
+    width: 90%;
+    max-width: 960px; /* Consistent max width */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 15px;
+}
+
+/* --- Typography --- */
+h1, h2, h3, h4, h5, h6 {
+    color: #2c2a28; /* Slightly darker for headings */
+    font-weight: 600; /* Semibold, common in Apple design */
+    line-height: 1.3;
+    margin-bottom: 0.75em; /* Consistent bottom margin */
+}
+h1 { font-size: 2.6rem; margin-top: 0; letter-spacing: -0.025em; } /* Typically page title, no top margin if first element */
+h2 { font-size: 2rem; letter-spacing: -0.02em; }
+h3 { font-size: 1.5rem; letter-spacing: -0.01em; }
+p { margin-bottom: 1.25rem; color: #595755; font-size: 1rem; } /* Slightly lighter text for paragraphs */
+small { font-size: 0.875rem; color: #7b7977; }
+
+a {
+    color: #5D9CEC; /* Warm blue accent */
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+a:hover, a:focus {
+    color: #3C7EDC; /* Darker shade for hover/focus */
+    text-decoration: underline;
+}
+
+/* --- Navbar --- */
+.navbar {
+    background-color: rgba(250, 248, 245, 0.85); /* Slightly transparent warm off-white */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid #EAE6E1; /* Light warm gray border */
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1020; /* Ensure it's above Bootstrap components if any are used */
+}
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navbar-brand {
+    font-size: 1.375rem; /* 22px */
+    font-weight: 700; /* Bold */
+    color: #2c2a28 !important;
+    display: flex;
+    align-items: center;
+}
+.navbar-brand svg {
+    margin-right: 10px;
+    color: #5D9CEC; /* Use accent for logo part */
+}
+.navbar-nav-right a, .navbar-nav-right span {
+    color: #595755 !important;
+    font-weight: 500;
+    margin-left: 1.5rem;
+    font-size: 0.9375rem; /* 15px */
+}
+.navbar-nav-right a:hover, .navbar-nav-right a:focus {
+    color: #5D9CEC !important;
+}
+
+/* --- Buttons --- */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.75rem; /* Generous padding */
+    font-size: 1rem;
+    font-weight: 500; /* Medium weight */
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 10px; /* Softer, Apple-like rounding */
+    transition: all 0.2s ease-in-out;
+    line-height: 1.5; /* Ensure text is centered vertically */
+}
+.btn-primary {
+    background-color: #5D9CEC;
+    color: #FFFFFF;
+    box-shadow: 0 2px 8px rgba(93, 156, 236, 0.2);
+}
+.btn-primary:hover, .btn-primary:focus {
+    background-color: #3C7EDC;
+    color: #FFFFFF;
+    box-shadow: 0 4px 12px rgba(93, 156, 236, 0.3);
+    transform: translateY(-1px);
+}
+.btn-lg {
+    padding: 0.875rem 2rem;
+    font-size: 1.125rem;
+}
+.btn-outline-secondary {
+    border-color: #D4CFCA; /* Lighter warm gray border */
+    color: #3B3A39;
+    background-color: transparent;
+}
+.btn-outline-secondary:hover, .btn-outline-secondary:focus {
+    background-color: rgba(93, 156, 236, 0.05); /* Very subtle accent hover */
+    border-color: #5D9CEC;
+    color: #5D9CEC;
+}
+.btn-link {
+    color: #5D9CEC;
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+.btn-link:hover, .btn-link:focus {
+    color: #3C7EDC;
+    text-decoration: underline;
+}
+
+
+/* --- Cards & Forms --- */
+.card {
+    background-color: #FFFFFF; /* White cards for contrast */
+    border: 1px solid #EAE6E1; /* Light warm gray border */
+    border-radius: 16px; /* More pronounced rounding */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06); /* Softer, diffused shadow */
+    margin-bottom: 2.5rem;
+    overflow: hidden; /* For elements that might poke out */
+}
+.card-body {
+    padding: 2.5rem; /* Generous padding */
+}
+.card-title {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.75rem; /* Larger card titles */
+}
+
+.form-label {
+    font-weight: 500;
+    margin-bottom: 0.625rem; /* 10px */
+    display: block;
+    color: #3B3A39;
+    font-size: 0.9375rem; /* 15px */
+}
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 0.875rem 1.125rem; /* 14px 18px */
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #3B3A39;
+    background-color: #FDFCFB; /* Slight off-white for inputs */
+    background-clip: padding-box;
+    border: 1px solid #D4CFCA; /* Lighter warm gray border */
+    border-radius: 10px; /* Rounded inputs */
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+.form-control:focus {
+    border-color: #5D9CEC;
+    outline: 0;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 0 0.2rem rgba(93, 156, 236, 0.2);
+}
+.form-control-lg {
+    padding: 1rem 1.25rem;
+    font-size: 1.125rem;
+}
+.form-text {
+    font-size: 0.875rem; /* 14px */
+    color: #7b7977;
+    margin-top: 0.5rem;
+}
+
+/* --- Alerts --- */
+.alert {
+    border-radius: 10px;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem; /* Space below alert */
+    border-width: 1px;
+    border-style: solid;
+}
+.alert-info { background-color: #e7f3fe; border-color: #d0e6fb; color: #30608f; }
+.alert-success { background-color: #e6f6e9; border-color: #cde9d3; color: #3a7447; }
+.alert-warning { background-color: #fff6e0; border-color: #feedc3; color: #896c27; }
+.alert-danger { background-color: #fdecea; border-color: #f9d0d1; color: #8e383b; }
+
+/* --- Footer --- */
+.footer {
+    text-align: center;
+    padding: 3rem 0;
+    margin-top: 4rem;
+    color: #7b7977;
+    font-size: 0.9375rem; /* 15px */
+    border-top: 1px solid #EAE6E1;
+}
+.footer p {
+    margin-bottom: 0;
+    color: #7b7977; /* Ensure footer p tags also get this color */
+}
+
+/* --- Main Content Padding (below sticky navbar) --- */
+.main-content-area {
+    padding-top: 3rem; /* Space below navbar */
+    padding-bottom: 3rem;
+}
+
+/* --- Landing Page Specifics --- */
+.landing-hero {
+    padding: 5rem 0; /* More vertical space */
+    text-align: center;
+}
+.landing-hero .display-4 {
+    font-size: 3.5rem; /* Larger hero title */
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #1c1a19; /* Darkest text for hero title */
+}
+.landing-hero .lead {
+    font-size: 1.375rem; /* 22px */
+    color: #595755;
+    margin-bottom: 2.5rem;
+    max-width: 700px; /* Constrain lead paragraph width */
+    margin-left: auto;
+    margin-right: auto;
+}
+.landing-hero .btn-primary {
+    font-size: 1.125rem; /* Larger CTA button */
+    padding: 1rem 2.5rem;
+}
+
+.features-section {
+    padding: 4rem 0;
+}
+.features-section h2.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3.5rem;
+}
+.feature-card { /* Replaces landing-how-it-works .card */
+    text-align: center;
+    background-color: #FFFFFF;
+    border: 1px solid transparent; /* Remove border for a flatter look, rely on shadow */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07); /* Softer, more spread shadow */
+    padding: 2rem;
+    height: 100%; /* For equal height cards in a row */
+}
+.feature-card .card-title { /* Style for h3 in feature cards */
+    font-size: 1.25rem; /* 20px */
+    color: #5D9CEC; /* Accent for feature titles */
+    font-weight: 600;
+    margin-top: 1.5rem; /* If there's an icon above */
+    margin-bottom: 0.75rem;
+}
+.feature-card p {
+    font-size: 1rem;
+    color: #595755;
+}
+/* Example for simple icons (you'd need actual SVGs or font icons) */
+.feature-icon {
+    font-size: 2.5rem; /* Placeholder size */
+    color: #5D9CEC;
+    margin-bottom: 1rem;
+    /* background-color: rgba(93, 156, 236, 0.1);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center; */
+}
+
+
+.cta-section { /* For the final "Your Space, Your Pace" section */
+    padding: 3rem;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+    background-color: #FFFFFF; /* White background for this section */
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+.cta-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+.cta-section .lead {
+    font-size: 1.25rem;
+    color: #595755;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1.5rem;
+}
+.cta-section .small {
+    color: #7b7977;
+}
+
+
+/* --- Calendar Specific Styles --- */
+.calendar-header-section { /* New wrapper for calendar title and nav */
+    margin-bottom: 2rem;
+}
+.calendar-header-section h1 {
+    margin-bottom: 0.5rem; /* Space between title and nav if on separate lines */
+}
+
+.calendar-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem; /* Space below nav */
+    background-color: #fdfcfb; /* Subtle background for nav */
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    border: 1px solid #EAE6E1;
+}
+.calendar-nav h3#currentMonthYear {
+    margin: 0;
+    font-size: 1.25rem; /* 20px */
+    font-weight: 600;
+    color: #3B3A39;
+}
+.calendar-nav .btn {
+    padding: 0.5rem 1rem; /* Smaller buttons for nav */
+    font-size: 0.9375rem; /* 15px */
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px; /* Slightly less gap if cells have more padding */
+    background-color: #FFFFFF;
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+.calendar-header { /* Day names: Sun, Mon, etc. */
+    text-align: center;
+    font-weight: 500; /* Medium weight */
+    padding-bottom: 1rem;
+    color: #7b7977;
+    font-size: 0.875rem; /* 14px */
+    text-transform: uppercase; /* SUN, MON... */
+    letter-spacing: 0.05em;
+}
+.calendar-day {
+    background-color: #FDFCFB;
+    border: 1px solid #EAE6E1;
+    min-height: 120px; /* Taller cells */
+    padding: 0.75rem; /* 12px */
+    border-radius: 10px; /* Rounded day cells */
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribute space */
+    align-items: flex-start;
+}
+.calendar-day:hover:not(.other-month) {
+    background-color: #f5f2ef;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+.calendar-day.other-month {
+    background-color: transparent; /* Make it blend more with calendar BG */
+    border-color: transparent; /* No border for other month days */
+    color: #c0bdb9;
+    cursor: default;
+    opacity: 0.7;
+}
+.calendar-day.other-month:hover {
+    transform: none;
+    box-shadow: none;
+}
+.calendar-day .date-number {
+    font-size: 0.875rem; /* 14px */
+    font-weight: 500;
+    color: #3B3A39;
+    align-self: flex-end; /* Date number to top-right */
+}
+.calendar-day .emoji-display {
+    font-size: 2.75rem; /* Larger emoji */
+    text-align: center;
+    display: block;
+    width: 100%;
+    margin-top: auto; /* Pushes emoji towards center/bottom after date number */
+    margin-bottom: auto; /* Centers it vertically if it's the only content */
+    line-height: 1.1;
+}
+.calendar-day.today {
+    background-color: #fff9e0; /* Very light, warm yellow */
+    border: 2px solid #ffe48f; /* Soft gold border */
+}
+.calendar-day.today .date-number {
+    font-weight: 700;
+    color: #E85A4F; /* Accent color for today's date number */
+}
+.calendar-day.has-entry {
+    /* Subtle indication, maybe a small dot or border color */
+    /* border-left: 4px solid #5D9CEC; */
+}
+.calendar-day.has-entry .date-number {
+    position: relative; /* For pseudo-element dot */
+}
+.calendar-day.has-entry .date-number::after { /* Small dot below date if has entry */
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    background-color: #5D9CEC; /* Accent dot */
+    border-radius: 50%;
+}
+
+
+/* --- Modal --- */
+.modal-content {
+    border-radius: 16px;
+    border: none;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+.modal-header {
+    background-color: #FDFCFB; /* Light warm header for modal */
+    color: #2c2a28;
+    border-bottom: 1px solid #EAE6E1;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    padding: 1.5rem;
+}
+.modal-title {
+    font-size: 1.375rem; /* 22px */
+    font-weight: 600;
+}
+.modal-body {
+    padding: 2rem;
+}
+.modal-body #modalEmoji {
+    font-size: 4.5rem;
+    margin-bottom: 1.5rem;
+    display: block;
+    text-align: center;
+}
+.modal-body #modalTextResponse {
+    font-size: 1.0625rem; /* 17px */
+    color: #595755;
+    background-color: #FAF8F5; /* Match page BG */
+    padding: 1.25rem;
+    border-radius: 10px;
+    border: 1px solid #EAE6E1;
+    min-height: 60px;
+    white-space: pre-wrap; /* Preserve newlines in text response */
+}
+
+/* Responsive adjustments (basic example) */
+@media (max-width: 768px) {
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.8rem; }
+    .landing-hero .display-4 { font-size: 2.8rem; }
+    .landing-hero .lead { font-size: 1.2rem; }
+    .features-section .col-md-4 { /* Bootstrap class, adjust if not using BS grid */
+        margin-bottom: 2rem; /* Stack cards nicely */
+    }
+    .calendar-day { min-height: 90px; }
+    .calendar-day .emoji-display { font-size: 2rem; }
+}
+
+@media (max-width: 576px) {
+    body { font-size: 15px; }
+    .container { width: 95%; }
+    .navbar .container { flex-direction: column; align-items: flex-start; }
+    .navbar-nav-right { width: 100%; margin-top: 0.5rem; display: flex; justify-content: space-around; }
+    .navbar-nav-right a, .navbar-nav-right span { margin-left: 0.5rem; margin-right: 0.5rem; }
+    .card-body { padding: 1.5rem; }
+    .modal-body { padding: 1.5rem; }
+    .calendar-nav { flex-direction: column; gap: 0.5rem; }
+    .calendar-nav h3#currentMonthYear { font-size: 1.1rem; }
+    .calendar-day { min-height: 70px; padding: 0.5rem; }
+    .calendar-day .emoji-display { font-size: 1.75rem; }
+    .calendar-day .date-number { font-size: 0.8rem; }
+}
+
+#moodCalendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 columns for 7 days */
+    gap: 2px; /* Small gap between cells */
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+.calendar-days-header {
+    display: contents; /* Makes its children part of the parent grid */
+}
+.calendar-day-label {
+    font-weight: bold;
+    text-align: center;
+    padding: 5px 0;
+}
+.calendar-day {
+    border: 1px solid #eee;
+    padding: 10px 5px;
+    min-height: 60px; /* Adjust as needed */
+    text-align: right;
+    font-size: 0.9em;
+    cursor: default; /* Default cursor */
+}
+.empty-cell {
+    background-color: #f9f9f9;
+}
+.date-cell { /* Clickable days */
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.date-cell:hover {
+    background-color: #e9f5ff;
+}
+.today {
+    background-color: #fff3cd;
+    font-weight: bold;
+}
+/* .has-entry {
+    background-color: #d1ecf1;
+} */
+/* .has-entry.today {
+    background-color: #b8e0e8;
+} */
+body.modal-open {
+    overflow: auto !important; /* Or you can use 'scroll' or 'visible' */
+  }
+/* Styles for the moodModal */
+#moodModal .modal-dialog {
+    max-width: 600px; /* Adjust as desired */
+    margin: 1.75rem auto; /* Bootstrap handles this for centering */
+}
+#moodModal .modal-content {
+    border-radius: 0.85rem;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.25);
+    border: none;
+}
+#moodModal .modal-header {
+    border-bottom: none;
+    padding-bottom: 0.5rem; /* Adjust if removing border */
+    /* You can customize other header padding here if needed */
+    /* padding: 1rem 1.25rem; */
+}
+#moodModal .modal-body {
+    padding: 1.25rem; /* Adjust padding if needed */
+}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}My Mood Calendar{% endblock %}
+
+{% block head_extra %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="calendar-header-section"> {# Wrapper for title and nav #}
+        <h1 style="margin-bottom: 1rem;">My Moods</h1> {# Simpler Title #}
+        
+        <div class="calendar-nav">
+            <button class="btn btn-outline-secondary" id="prevMonthBtn">&lt;&nbsp;&nbsp;Prev</button>
+            <h3 id="currentMonthYear">Month Year</h3>
+            <button class="btn btn-outline-secondary" id="nextMonthBtn">Next&nbsp;&nbsp;&gt;</button>
+        </div>
+    </div>
+
+    <div class="calendar" id="moodCalendar">
+        </div>
+</div>
+
+<div class="modal fade" id="moodModal" tabindex="-1" aria-labelledby="moodModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="moodModalLabel">Mood on <span id="modalDate"></span></h5>
+        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+    </div>
+      <div class="modal-body">
+        <p class="text-center" id="modalEmoji"></p>
+        <div id="modalTextResponseWrapper" style="margin-top: 1rem;"> {# Wrapper for text response #}
+            <p id="modalTextResponse"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    const moodEntriesByDate = {{ entries_by_date_iso | tojson | safe }};
+    const todayISO = "{{ today_iso }}";
+    window.moodEntriesByDateGlobal = moodEntriesByDate;
+    window.todayISOGlobal = todayISO;
+</script>
+
+<script src="static/js/main.js" type="module" defer></script>
+<script src="static/js/calender_renderer.js" type="module"></script> {# Use type="module" if using export/import #}
+{% endblock %}
