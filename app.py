@@ -217,7 +217,7 @@ def verify_otp():
                     login_user(app_user, remember=True)
                     session.pop('phone_for_verification', None)
 
-                    welcome_message = "Welcome to Mood Tracker! You'll receive daily mood prompts. Reply STOP to unsubscribe."
+                    welcome_message = "Welcome to Mindful Moments! Each day, we'll send a gentle SMS asking about your day. Reply with an emoji to capture your feeling. Reply STOP to unsubscribe."
                     send_sms(phone_for_verification, welcome_message)
 
                     flash('Successfully subscribed and logged in!', 'success')
@@ -495,7 +495,7 @@ def scheduled_daily_prompt_job():
             app.logger.error(f"Scheduler: Error fetching subscribed users: {e}")
 
 scheduler = BackgroundScheduler(daemon=True)
-scheduler.add_job(scheduled_daily_prompt_job, 'cron', hour=12, minute=58)
+scheduler.add_job(scheduled_daily_prompt_job, 'cron', hour=13, minute=5)
 
 # --- Flask CLI Commands ---
 @app.cli.command("init-db") # This command is now a misnomer, as there's no SQL DB to init tables for.
