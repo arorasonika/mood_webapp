@@ -18,6 +18,12 @@ from firebase_admin import credentials, auth as firebase_auth, firestore
 from config import Config
 from sms_handler import send_sms, send_daily_mood_prompt_sms, format_phone_to_e164 # Removed send_otp_sms, handled in-app
 
+# --- Application Initialization ---
+app = Flask(__name__)
+app.config.from_object(Config)
+app.logger.setLevel("DEBUG")
+# db.init_app(app) # REMOVE SQLAlchemy initialization
+
 # --- Firebase Initialization ---
 try:
     cred = credentials.Certificate(Config.GOOGLE_APPLICATION_CREDENTIALS)
@@ -25,8 +31,10 @@ try:
     db_firestore = firestore.client() # Firestore client
     app_firebase_auth = firebase_auth # Firebase Auth client
     print("Firebase Admin SDK initialized successfully.")
+    app.logger.info("Firebase Admin SDK initialized successfully.")
 except Exception as e:
     print(f"Error initializing Firebase Admin SDK: {e}. Ensure GOOGLE_APPLICATION_CREDENTIALS is set correctly in .env and the file exists.")
+    app.logger.error(f"Firebase initialization error: {e}")
     db_firestore = None
     app_firebase_auth = None
     # Optionally, exit the app if Firebase fails to initialize:
@@ -58,12 +66,6 @@ class FirebaseUser(UserMixin):
         except Exception as e:
             app.logger.error(f"Error fetching user {user_id} from Firestore: {e}")
             return None
-
-# --- Application Initialization ---
-app = Flask(__name__)
-app.config.from_object(Config)
-app.logger.setLevel("DEBUG")
-# db.init_app(app) # REMOVE SQLAlchemy initialization
 
 @app.context_processor
 def inject_global_vars():
