@@ -1,5 +1,5 @@
 # Byte-compiled / optimized / DLL files
-__pycache__/
+__pycache__/**
 *.py[cod]
 *$py.class
 
@@ -190,3 +190,4 @@ cython_debug/
 # Other
 mood-tracker-firebase-service-account-key.json
 mood-tracker-4b42d-firebase-adminsdk-fbsvc-70b17bea31.json
+.DS_Store

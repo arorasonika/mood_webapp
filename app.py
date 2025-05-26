@@ -495,7 +495,7 @@ def scheduled_daily_prompt_job():
             app.logger.error(f"Scheduler: Error fetching subscribed users: {e}")
 
 scheduler = BackgroundScheduler(daemon=True)
-scheduler.add_job(scheduled_daily_prompt_job, 'cron', hour=22, minute=28)
+scheduler.add_job(scheduled_daily_prompt_job, 'cron', hour=18, minute=30)
 
 # --- Flask CLI Commands ---
 @app.cli.command("init-db") # This command is now a misnomer, as there's no SQL DB to init tables for.
