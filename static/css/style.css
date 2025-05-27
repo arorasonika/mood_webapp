@@ -316,6 +316,15 @@ a:hover, a:focus {
 .cta-section .small {
     color: #7b7977;
 }
+.terms-section { /* For the terms section */
+    padding: 3rem;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+    background-color: #FFFFFF; /* White background for this section */
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
 
 
 /* --- Calendar Specific Styles --- */

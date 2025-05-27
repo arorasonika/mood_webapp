@@ -8,7 +8,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 import click
 import random # For OTP generation
 from datetime import datetime
-
+import logging
 
 # Firebase Admin SDK
 import firebase_admin
@@ -21,8 +21,11 @@ from sms_handler import send_sms, send_daily_mood_prompt_sms, format_phone_to_e1
 # --- Application Initialization ---
 app = Flask(__name__)
 app.config.from_object(Config)
-app.logger.setLevel("DEBUG")
 # db.init_app(app) # REMOVE SQLAlchemy initialization
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, 
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
 # --- Firebase Initialization ---
 try:
