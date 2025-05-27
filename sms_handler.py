@@ -70,4 +70,4 @@ def send_otp_sms(phone_number_e164, otp):
 def send_daily_mood_prompt_sms(phone_number_e164):
     """Sends the daily mood prompt SMS."""
     print("sent sms")
-    return send_sms(phone_number_e164, "How do you feel today? Reply with an emoji and optional message.")
+    return send_sms(phone_number_e164, "Hey, just checking in - how do you feel today?")
