@@ -65,7 +65,7 @@ def send_sms(to_phone_number_e164, body_text):
 
 def send_otp_sms(phone_number_e164, otp):
     """Sends the OTP verification code via SMS."""
-    return send_sms(phone_number_e164, f"Your Mood Tracker verification code is: {otp}")
+    return send_sms(phone_number_e164, f"Your Mindful Moments verification code is: {otp}")
 
 def send_daily_mood_prompt_sms(phone_number_e164):
     """Sends the daily mood prompt SMS."""
