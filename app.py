@@ -168,8 +168,7 @@ def login():
         # Generate and send OTP via Twilio (using our temporary store)
         otp = generate_and_store_otp(formatted_phone_e164)
         otp_message = (
-            f"Your Mood Tracker verification code is: {otp}. "
-            f"By verifying, you agree to receive daily SMS. Msg&Data rates may apply. Reply STOP to cancel."
+            f"Your Mindful Moments verification code is: {otp}."
         )
         if send_sms(formatted_phone_e164, otp_message):
             session['phone_for_verification'] = formatted_phone_e164
@@ -183,6 +182,7 @@ def login():
 
 @app.route('/verify_otp', methods=['GET', 'POST'])
 def verify_otp():
+    new_user = False # Track if this is a new user creation
     if current_user.is_authenticated:
         return redirect(url_for('calendar_view'))
 
