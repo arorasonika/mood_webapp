@@ -9,6 +9,11 @@ import click
 import random # For OTP generation
 from datetime import datetime
 import logging
+import pytz
+import time
+
+# Set the timezone to 'America/Los_Angeles'
+timezone = pytz.timezone('America/Los_Angeles')
 
 # Firebase Admin SDK
 import firebase_admin
@@ -515,7 +520,7 @@ minute = os.environ.get('SMS_CRON_JOB_MINUTE', '15') # Default to 15 minutes pas
 day_of_week = os.environ.get('SMS_CRON_JOB_DAY_OF_WEEK', 'mon-sun') # Default to every day
 # log the cron job schedule
 app.logger.info(f"Scheduler: Daily prompt job scheduled at {hour}:{minute} on {day_of_week}")
-scheduler.add_job(scheduled_daily_prompt_job, 'cron', hour=hour, minute=minute, day_of_week=day_of_week)
+scheduler.add_job(scheduled_daily_prompt_job, 'cron', hour=hour, minute=minute, day_of_week=day_of_week, )
 
 # --- Flask CLI Commands ---
 @app.cli.command("init-db") # This command is now a misnomer, as there's no SQL DB to init tables for.
