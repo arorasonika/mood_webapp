@@ -204,6 +204,7 @@ def verify_otp():
                 except firebase_auth.UserNotFoundError:
                     firebase_user_record = app_firebase_auth.create_user(phone_number=phone_for_verification)
                     app.logger.info(f"Firebase Auth: Created new user {firebase_user_record.uid} for {phone_for_verification}")
+                    new_user = True
 
                 user_uid = firebase_user_record.uid
 
@@ -226,10 +227,12 @@ def verify_otp():
                     login_user(app_user, remember=True)
                     session.pop('phone_for_verification', None)
 
-                    welcome_message = '''Welcome to Mindful Moments! Each day, we'll send a gentle SMS asking about your day. Reply with an emoji and optional text to capture your feeling. Reply STOP to unsubscribe.
+                    if new_user:
+                        welcome_message = "Welcome to Mindful Moments! Each day, we'll send a gentle SMS asking about your day. Reply with an emoji and optional text to capture your feeling. Reply STOP to unsubscribe."
+                        send_sms(phone_for_verification, welcome_message)
+                        welcome_message = "How are you feeling today? 😊"
+                        send_sms(phone_for_verification, welcome_message)
                     
-                    How are you feeling today? 😊'''
-                    send_sms(phone_for_verification, welcome_message)
 
                     flash('Successfully subscribed and logged in!', 'success')
                     return redirect(request.args.get('next') or url_for('calendar_view'))
