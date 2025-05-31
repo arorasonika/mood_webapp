@@ -204,7 +204,6 @@ def verify_otp():
                 except firebase_auth.UserNotFoundError:
                     firebase_user_record = app_firebase_auth.create_user(phone_number=phone_for_verification)
                     app.logger.info(f"Firebase Auth: Created new user {firebase_user_record.uid} for {phone_for_verification}")
-                    new_user = True
 
                 user_uid = firebase_user_record.uid
 
@@ -218,6 +217,7 @@ def verify_otp():
                 # Add created_at only if document doesn't exist (new user profile in Firestore)
                 if not user_doc_ref.get().exists:
                     user_data_firestore['created_at'] = firestore.SERVER_TIMESTAMP
+                    new_user = True
 
                 user_doc_ref.set(user_data_firestore, merge=True) # merge=True to update if exists, create if not
 
@@ -512,6 +512,8 @@ scheduler = BackgroundScheduler(daemon=True)
 hour = os.environ.get('SMS_CRON_JOB_HOUR', '9') # Default to 9 AM if not set
 minute = os.environ.get('SMS_CRON_JOB_MINUTE', '15') # Default to 15 minutes past the hour if not set
 day_of_week = os.environ.get('SMS_CRON_JOB_DAY_OF_WEEK', 'mon-sun') # Default to every day
+# log the cron job schedule
+app.logger.info(f"Scheduler: Daily prompt job scheduled at {hour}:{minute} on {day_of_week}")
 scheduler.add_job(scheduled_daily_prompt_job, 'cron', hour=hour, minute=minute, day_of_week=day_of_week)
 
 # --- Flask CLI Commands ---
