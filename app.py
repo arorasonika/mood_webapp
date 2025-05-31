@@ -226,7 +226,9 @@ def verify_otp():
                     login_user(app_user, remember=True)
                     session.pop('phone_for_verification', None)
 
-                    welcome_message = "Welcome to Mindful Moments! Each day, we'll send a gentle SMS asking about your day. Reply with an emoj and optional text to capture your feeling. Reply STOP to unsubscribe."
+                    welcome_message = '''Welcome to Mindful Moments! Each day, we'll send a gentle SMS asking about your day. Reply with an emoji and optional text to capture your feeling. Reply STOP to unsubscribe.
+                    
+                    How are you feeling today? 😊'''
                     send_sms(phone_for_verification, welcome_message)
 
                     flash('Successfully subscribed and logged in!', 'success')
