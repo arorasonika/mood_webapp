@@ -18,6 +18,12 @@ from firebase_admin import credentials, auth as firebase_auth, firestore
 from config import Config
 from sms_handler import send_sms, send_daily_mood_prompt_sms, format_phone_to_e164 # Removed send_otp_sms, handled in-app
 
+import os
+from dotenv import load_dotenv
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+load_dotenv(os.path.join(basedir, '.env'))
+
 # --- Application Initialization ---
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -498,7 +504,10 @@ def scheduled_daily_prompt_job():
             app.logger.error(f"Scheduler: Error fetching subscribed users: {e}")
 
 scheduler = BackgroundScheduler(daemon=True)
-scheduler.add_job(scheduled_daily_prompt_job, 'cron', hour='9', minute='15', day_of_week='mon-sun')
+hour = os.environ.get('SMS_CRON_JOB_HOUR', '9') # Default to 9 AM if not set
+minute = os.environ.get('SMS_CRON_JOB_MINUTE', '15') # Default to 15 minutes past the hour if not set
+day_of_week = os.environ.get('SMS_CRON_JOB_DAY_OF_WEEK', 'mon-sun') # Default to every day
+scheduler.add_job(scheduled_daily_prompt_job, 'cron', hour=hour, minute=minute, day_of_week=day_of_week)
 
 # --- Flask CLI Commands ---
 @app.cli.command("init-db") # This command is now a misnomer, as there's no SQL DB to init tables for.
