@@ -155,6 +155,7 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    app.logger.info("Login route accessed.")
     if current_user.is_authenticated:
         return redirect(url_for('calendar_view'))
 
