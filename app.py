@@ -485,6 +485,7 @@ def sms_receive():
 
 # --- APScheduler Setup for Daily SMS ---
 def scheduled_daily_prompt_job():
+    app.logger.info("Running Scheduled job: Sending daily mood prompts to subscribed users.")
     if not db_firestore:
         app.logger.error("Scheduler: Firestore not initialized. Skipping job.")
         return
