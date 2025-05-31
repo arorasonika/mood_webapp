@@ -514,7 +514,7 @@ def scheduled_daily_prompt_job():
         except Exception as e:
             app.logger.error(f"Scheduler: Error fetching subscribed users: {e}")
 
-scheduler = BackgroundScheduler(daemon=True)
+scheduler = BackgroundScheduler(daemon=True, timezone=timezone)
 hour = os.environ.get('SMS_CRON_JOB_HOUR', '9') # Default to 9 AM if not set
 minute = os.environ.get('SMS_CRON_JOB_MINUTE', '15') # Default to 15 minutes past the hour if not set
 day_of_week = os.environ.get('SMS_CRON_JOB_DAY_OF_WEEK', 'mon-sun') # Default to every day
